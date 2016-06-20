@@ -1,0 +1,68 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+    	while(true)
+    	{
+    		int girl = in.nextInt();
+    		int boy = in.nextInt();
+    		if(girl==-1)
+    			break;
+    		else
+    		{	
+    			int a,b;
+    			if(girl>boy)
+    			{
+    				a = girl;
+    				b = boy;
+    			}
+    			else
+    			{
+    				a = boy;
+    				b = girl;
+    			}
+    			if(b==0)
+    				System.out.println(a);
+    			else if(a==b || a==b+1)
+    				System.out.println(1);
+    			else if(b>=a/2)
+    				System.out.println(2);
+    			else
+    			{
+    				if(a%2!=0 && b%2==0)
+    				{
+    					b++;
+    					double c = (double)a;
+    					double d = (double)b;
+    					System.out.println((int)Math.ceil(c/d));
+    				}
+    				else if(a%2!=0 && b%2!=0)
+    				{
+    					a++;
+    					b++;
+    					double c = (double)a;
+    					double d = (double)b;
+    					System.out.println((int)Math.ceil(c/d));
+    				}
+    				else if(a%2==0 && b%2==0)
+    				{
+    					double c = (double)(a);
+    					double d = (double)(b+1);
+    					System.out.println(((int)Math.ceil(c/d)));
+    					
+    				}
+    				else if(a%2==0 && b%2!=0)
+    				{
+    					b++;
+    					double d = (double)b;
+    					System.out.println((int)Math.ceil(a/d));
+    				}
+    			}
+    		}
+    	}
+	}
+}

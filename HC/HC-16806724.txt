@@ -1,0 +1,28 @@
+import java.util.*;
+
+ 
+class Main {
+	
+	public static void main(String[] args)
+  {
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		for(int i=0; i<t; i++)
+		{
+			int n = in.nextInt();
+			int count = 0;
+			for(int j=0; j<n; j++)
+			{
+				String s = in.next();
+				if(s.equals("lxh"))
+					count++;
+			}
+			if(count%2 == 0)
+				System.out.println("hhb");
+			else
+				System.out.println("lxh");
+		}
+    
+    
+  }
+}

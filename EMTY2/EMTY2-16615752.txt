@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Main
+{
+	public static int top;
+	public static void push(int a[],int item)
+	{
+		a[++top] = item;
+	}
+	
+	public static void main(String args[])
+	{
+		Scanner val = new Scanner(System.in);
+		int t = val.nextInt(),k=0;
+		for(int i=0; i<t; i++)
+		{	
+			k++;
+			String s = val.next();
+			char ch[] = s.toCharArray();
+			int st[] = new int[s.length()];
+			top = -1;
+			for(int j=0; j<s.length(); j++)
+			{
+				if(ch[j]=='0' && top>0)
+				{
+					if(st[top]==0 && st[top-1]==1)
+						top = top-2;
+					else
+						push(st,ch[j]-48);
+				}
+				else
+					push(st,ch[j]-48);
+			}
+			if(top==-1)
+				System.out.println("Case "+k+": yes");
+			else
+				System.out.println("Case "+k+": no");
+		}	
+	}
+}

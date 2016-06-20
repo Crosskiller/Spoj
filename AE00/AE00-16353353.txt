@@ -1,0 +1,22 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		int i = 1,val = n/i,sum = val;
+		while(val!=0)
+		{
+			i++;
+			val = (n/i)-(i-1);
+			if(val<0)
+				break;
+			sum+= val;
+		}
+		
+		System.out.println(sum);
+	}
+}

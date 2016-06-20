@@ -1,0 +1,30 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		//System.out.println("1");
+		while(true)
+        {
+			//System.out.println("2");
+    	   double c = in.nextDouble();
+    	   //System.out.println("3");
+    	   if(c==0.00)
+    		   break;
+    	   int sum = 1,k = 2;
+           double val = 1/(double)k;
+           
+           while(c>val)
+           {
+        	   c = c-val;
+        	   k++;
+        	   val = 1/(double)k;
+        	   sum++;
+        	}
+    	   System.out.println(sum+" card(s)");
+        }
+	}
+}

@@ -1,0 +1,30 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner val = new Scanner(System.in);
+		while(true)
+		{	
+			int a1 = val.nextInt();
+			int a2 = val.nextInt();
+			int a3 = val.nextInt();
+			if(a1==0 && a2==0 && a3==0)
+				break;
+			else
+			{
+				if(a2-a1 == a3-a2)
+				{
+					System.out.print("AP"+" "+(a3+(a3-a2)));
+				}
+				else if(a2/a1 == a3/a2)
+				{
+					System.out.print("GP"+" "+a3*(a3/a2));
+				}
+			}	
+			System.out.println("");	
+		}	
+	}
+}

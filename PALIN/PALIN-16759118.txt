@@ -1,0 +1,110 @@
+import java.util.*;
+
+ 
+class Main {
+	public static boolean allNine(int ch[])
+	{
+		//System.out.println("in func allNine");
+		for(int i=0; i<ch.length; i++)
+		{
+			if(ch[i]!=9)
+				return false;
+		}
+		return true;
+	}
+	public static void printArr(int ch[])
+	{
+		//System.out.println("In printArr func");
+		for(int i=0; i<ch.length; i++)
+		{
+			System.out.print(ch[i]);
+		}
+	}
+	public static void nextPal(int ch[])
+	{
+		//System.out.println("in func nextArr");
+		int n = ch.length;
+		int ch1[] = new int[n+1];
+		if(allNine(ch))
+		{
+			//System.out.println("in all nine loop");
+			ch1[0] = 1;
+			int i=1;
+			for(i=1; i<n; i++)
+				ch1[i] = 0;
+			ch1[i] = 1;
+			printArr(ch1);
+			return;
+		}
+		int mid = n/2;
+		int i= mid-1;
+		int j = (n%2==0)?mid:mid+1;
+		while(i>=0 && ch[i]==ch[j])
+		{
+			//System.out.println("1");
+			i--;
+			j++;
+		}
+		boolean flag = false; 
+		if(i<0 || ch[i]<ch[j])
+		{
+			//System.out.println("2");
+			flag = true;
+		}
+		while(i>=0)
+		{
+			//System.out.println("3");
+			ch[j++] = ch[i--];
+		}
+		if(flag)
+		{
+			//System.out.println("4");
+			i = mid-1;
+			int carry = 1;
+			if(n%2==1)
+			{
+				//System.out.println("5");
+				//System.out.println(ch[mid]);
+				ch[mid] += 1;
+				carry = ch[mid]/10;
+				ch[mid] = ch[mid]%10;
+				j = mid+1;
+			}
+			else
+				j = mid;
+			while(i>=0)
+			{
+				//System.out.println("6");
+				ch[i]+=carry;
+				carry = ch[i]/10;
+				ch[i] = ch[i]%10;
+				ch[j++] = ch[i--];
+			}
+		}
+		printArr(ch);
+		return;
+	}
+	
+  public static void main(String[] args)
+  {
+	  Scanner in = new Scanner(System.in);
+	  int t = in.nextInt();
+	  //System.out.println("t:");
+	  for(int p=0; p<t; p++)
+	  {
+		  String s = in.next();
+		  //System.out.println("s:"+s);
+		  int a[] = new int[s.length()]; 
+		  for(int i=0; i<s.length(); i++)
+		  {
+			  a[i] = s.charAt(i)-'0';
+		  }
+		  //System.out.println("fun call nextarr");
+		  nextPal(a);
+		  System.out.println("");
+		}
+	  //System.out.println(n);
+    
+    
+  }
+}

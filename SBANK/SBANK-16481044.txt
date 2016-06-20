@@ -1,0 +1,37 @@
+import java.util.*;
+class cross
+{
+	public static void main (String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		for(int p=0; p<t; p++)
+		{
+			int n = in.nextInt();
+			String c = in.nextLine();
+			String arr[] = new String[n];
+			for(int i=0; i<n; i++)
+				arr[i] = in.nextLine();
+			Arrays.sort(arr);
+			int i=0;
+			while(i<n)
+			{
+				int count = 0;
+				String s = arr[i];
+				while(i<n)
+				{
+					if(s.compareTo(arr[i])==0)
+					{
+						count++;
+						i++;
+					}
+					else 
+						break;
+				}
+				System.out.println(s+count);
+			
+			}
+			System.out.println("");
+		}
+	}
+}

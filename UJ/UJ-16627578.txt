@@ -1,0 +1,20 @@
+import java.util.*;
+import java.math.*;
+
+class Main{
+	public static void main(String args[])
+	{
+		Scanner val = new Scanner(System.in);
+		while(true)
+		{
+			int n = val.nextInt();
+			int d = val.nextInt();
+			if(n==0)
+				break;
+			BigInteger nBig = BigInteger.valueOf(n);
+			System.out.println(nBig.pow(d));
+		}
+				
+		}	
+	}
+

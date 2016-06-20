@@ -1,0 +1,93 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static int front;
+	public static int rear;
+	public static void push(int q[],int item)
+	{
+		if(front==-1)
+		{
+			front++;
+			rear++;
+			q[front] = item;
+		}	
+		else
+		{
+			rear++;
+			q[rear] = item;
+		}
+	}
+	public static void pop_back(int q[])
+	{
+		if(front==rear && front!=-1)
+		{
+			front--;
+			rear--;
+		}
+		else
+		{
+			rear--;
+		}
+	}
+	public static void pop_front(int q[])
+	{
+		if(front==rear && front!=-1)
+		{
+			front--;
+			rear--;
+		}
+		else
+		{
+			for(int i=front; i<rear; i++)
+			{
+				q[i] = q[i+1];
+			}
+			rear--;
+		}
+	}
+	public static boolean isEmpty()
+	{
+		if(front==-1)
+			return true;
+		else
+			return false;
+	}
+	public static void printMax(int a[], int n, int k)
+	{
+		int q[] = new int[k];
+		front = -1;
+		rear = -1;
+		int i;
+		for(i=0; i<k; i++)
+		{
+			while(!isEmpty() && a[i]>=a[q[rear]])
+				pop_back(q);
+			push(q,i);
+		}
+		for(int j =i; j<n; j++)
+		{
+			System.out.print(a[q[front]]+" ");
+			while(!isEmpty() && q[front]<=j-k)
+				pop_front(q);
+			while(!isEmpty() && a[j]>=a[q[rear]])
+				pop_back(q);
+			push(q,j);
+		}
+		System.out.print(a[q[front]]+" ");
+	}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		int a[] = new int[n];
+		for(int i=0; i<n; i++)
+		{
+			a[i] = in.nextInt();
+		}
+		int k = in.nextInt();
+		printMax(a,n,k);
+	}
+}

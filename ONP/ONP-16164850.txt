@@ -1,0 +1,48 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static char a[] = new char[400];
+	public static int top = 0;
+	public static void push(char ch)
+	{
+		a[top] = ch;
+		top++;
+	}
+	public static void pop()
+	{
+		top--;
+		while(a[top]!='(')
+		{	
+			System.out.print(a[top]);
+			top--;
+		}
+		
+	}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner val = new Scanner(System.in);
+        int t = val.nextInt();
+        for(int i=0; i<t; i++)
+        {
+        	String s = val.next();
+        	for(int j=0; j<s.length(); j++)
+        	{
+        		if(s.charAt(j)=='+'||s.charAt(j)=='-'||s.charAt(j)=='*'||s.charAt(j)=='/'||s.charAt(j)=='^'||s.charAt(j)=='(')
+        		{
+        			push(s.charAt(j));
+        		}
+        		else if(s.charAt(j)==')')
+        		{
+        			pop();
+        		}
+        		else
+        		{
+        			System.out.print(s.charAt(j));
+        		}
+        	}
+        	System.out.println("");
+        }	
+	}
+}

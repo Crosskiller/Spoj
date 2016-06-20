@@ -1,0 +1,86 @@
+import java.util.*;
+
+ 
+class Main {
+	public static String getStr(int val)
+	{
+		
+		String s = "";
+		int k = val/1000;
+		if(k>=2)
+			s+=k+"m";
+		else if(k==1)
+			s+="m";
+		
+		val -= k*1000;
+		k = val/100;
+		if(k>=2)
+			s+=k+"c";
+		else if(k==1)
+			s+="c";
+		
+		val -= k*100;
+		k = val/10;
+		if(k>=2)
+			s += k+"x";
+		else if(k==1)
+			s+="x";
+		
+		val -= k*10;
+		if(val>=2)
+			s+=val+"i";
+		else if(val==1)
+			s+="i";
+	
+		return s;
+	}
+	
+	public static int getVal(String s)
+	{
+		int k = 1, val = 0;
+		for(int i=0; i<s.length(); i++)
+		{
+			if(s.charAt(i)=='m')
+			{
+				val+= k * 1000;
+				k = 1;
+			}
+			else if(s.charAt(i)=='c')
+			{
+				val+= k * 100;
+				k = 1;
+			}
+			else if(s.charAt(i)=='x')
+			{
+				val+= k * 10;
+				k = 1;
+			}
+			else if(s.charAt(i)=='i')
+			{
+				val+= k * 1;
+			}
+			else
+			{
+				k = s.charAt(i) - '0';
+			}
+		}
+		return val;
+	}
+	public static void main(String[] args)
+  {
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		for(int i=0; i<t; i++)
+		{
+			String s1 = in.next();
+			String s2 = in.next();
+			int val1 = getVal(s1);
+			int val2 = getVal(s2);
+			//System.out.println(val1);
+			//System.out.println(val2);
+			System.out.println(getStr(val1+val2));
+		}
+    
+    
+  }
+}

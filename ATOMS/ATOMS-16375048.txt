@@ -1,0 +1,27 @@
+import java.io.*;
+import java.math.BigInteger;
+import java.util.Scanner;
+class Main 
+{
+    	public static void main(String args[]) throws IOException
+      	{  	
+    		Scanner in = new Scanner(System.in);
+    	  	int n1= in.nextInt();
+    	  	while(n1-->0)
+            {
+    			Long n = in.nextLong();
+                BigInteger k1 = in.nextBigInteger();
+                Long m = in.nextLong();
+                Long xx= m/n;
+    			BigInteger com=BigInteger.valueOf(xx);
+    			int tt=0;
+    			while(k1.pow(tt).compareTo(com)<1)
+    				tt++;
+    			if(tt>0)
+    			{
+    				tt--;
+    			}
+    			System.out.println(tt);
+    		 }
+        }
+}

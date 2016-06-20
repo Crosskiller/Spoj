@@ -1,0 +1,21 @@
+import java.util.*;
+import java.math.*;
+class Main
+{
+	public static void main (String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		while(true)
+		{	
+			BigInteger n = in.nextBigInteger();
+			if(n.equals(BigInteger.valueOf(0)))
+				System.out.println(n);
+			else if(n.equals(BigInteger.valueOf(1)))
+				System.out.println(n);
+			else
+				System.out.println((n.multiply(BigInteger.valueOf(2))).subtract(BigInteger.valueOf(2)));
+			if(!(in.hasNextBigInteger()))
+				break;
+		}
+	}
+}

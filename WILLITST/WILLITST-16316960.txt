@@ -1,0 +1,23 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		long n = in.nextLong();
+		while(n > 1)
+		{
+		  if(n % 2== 0)
+		    n=n/2;
+		  else
+		  {	  
+			  System.out.println("NIE");
+			  break;
+		  }
+		}
+		if(n==1)
+			System.out.println("TAK");
+	}
+}

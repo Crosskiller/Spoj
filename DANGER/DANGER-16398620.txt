@@ -1,0 +1,33 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		while(true)
+		{
+			String s = in.next();
+			if(s.equals("00e0"))
+				break;
+			char ch[] = s.toCharArray();
+			int n = Character.getNumericValue(ch[3]);
+			String s1 = ""+ch[0]+ch[1];
+			for(int i=0; i<n; i++)
+			{
+				s1 = s1+'0';
+			}
+			n = Integer.parseInt(s1);
+			int k = 0;
+			while(n/(int)Math.pow(2,k)!=0)
+			{
+				k++;
+			}
+			int val = (int)Math.pow(2,k-1);
+			val = n%val;
+			int ans = 2*val + 1;
+			System.out.println(ans);
+		}
+	}
+}

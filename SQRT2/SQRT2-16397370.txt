@@ -1,0 +1,44 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		System.out.print("1.");
+		long div = 100;
+		long divider = 24;
+		long sum = 0;
+		while(sum<16)
+		{
+			long val = div/divider;
+			System.out.print(val);
+			div = div%divider;
+			divider+=val;
+			div = Long.parseLong(Long.toString(div)+"00");
+			if(div<divider)
+			{
+				div = Long.parseLong(Long.toString(div)+"00");
+				System.out.print(0);
+			}
+			long add =0;
+			long val2 = divider;
+			while(true)
+			{
+				add++;
+				long val1 = Long.parseLong(Long.toString(val2)+Long.toString(add));
+				if(div<val1)
+				{
+					div = Long.parseLong(Long.toString(div)+"00");
+					System.out.print(0);
+				}
+				long val3=val1*add;
+				if((div/val3)==0)
+					break;
+				divider = val1;
+			}
+			sum++;
+		}	
+	}
+}

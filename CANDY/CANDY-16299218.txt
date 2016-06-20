@@ -1,0 +1,37 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner val = new Scanner(System.in);
+		while(true)
+		{	
+			int n = val.nextInt();
+			if(n==-1)
+				break;
+			int a[] = new int[n];
+			for(int i=0; i<n; i++)
+			{
+				a[i] = val.nextInt();
+			}
+			int sum = 0;
+			for(int i=0; i<n; i++)
+			{
+				sum+=a[i];
+			}
+			int avg = sum/n;
+			int sum1 = 0;
+			for(int i=0; i<n; i++)
+			{
+				if(a[i]-avg>0)
+					sum1+=a[i]-avg;
+			}
+			if(sum%n==0)
+				System.out.println(sum1);
+			else
+				System.out.println(-1);
+		}	
+	}
+}

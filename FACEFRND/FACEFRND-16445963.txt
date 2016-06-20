@@ -1,0 +1,34 @@
+import java.util.*;
+
+
+class Main
+{
+	public static HashMap<Integer,Integer> hmp= new HashMap<Integer,Integer>(); 
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		for(int i=0; i<n; i++)
+		{
+			int fid = in.nextInt();
+			hmp.put(fid,1); // 1 for friend and 0 for friend of friend
+			//System.out.println(hmp.get(1));
+			int m = in.nextInt();
+			for(int j=0; j<m; j++)
+			{
+				int fid1 = in.nextInt();
+				if(!hmp.containsKey(fid1))
+					hmp.put(fid1,0);
+			}
+		}
+		int sum = 0;
+		for(int key:hmp.keySet())
+		{
+			if(hmp.get(key)==0)
+				sum++;
+		}
+		System.out.println(sum);
+		
+	}
+	
+}

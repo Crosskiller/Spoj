@@ -1,0 +1,49 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+    	int max = 10000000;
+    	String a[] = new String[max];
+    	int i=1,j=1,count = 0;
+    	a[count++] = i+"/"+j;
+    	while(true)
+    	{
+    		j++;
+    		a[count++] = i+"/"+j;
+    		if(count==max)
+    			break;
+    		while(j>1)
+    		{
+    			i++;j--;
+    			a[count++] = i+"/"+j;
+    			if(count==max)
+        			break;
+    		}
+    		if(count==max)
+    			break;
+    		i++;
+    		a[count++] = i+"/"+j;
+    		if(count==max)
+    			break;
+    		while(i>1)
+    		{
+    			i--;j++;
+    			a[count++] = i+"/"+j;
+    			if(count==max)
+        			break;
+    		}
+    		if(count==max)
+    			break;
+    	}
+    	int t = in.nextInt();
+    	for(int k=0; k<t; k++)
+    	{
+    		int pos = in.nextInt();
+    		System.out.println("TERM "+(pos)+" IS "+a[pos-1]);
+    	}
+	}
+}

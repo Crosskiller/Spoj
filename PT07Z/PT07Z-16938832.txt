@@ -1,0 +1,129 @@
+import java.io.*;
+import java.util.*;
+class Vertex{
+	public boolean visited;
+	public Vertex()
+	{
+		visited = false;
+	}
+}
+class Graph{
+	public int vertexCount;
+	public List<Integer> list[];
+	public Vertex vertexList[];
+	public Stack<Integer> st;
+	public Graph(int vc)
+	{
+		vertexCount = vc;
+		list = new List[vc];
+		vertexList = new Vertex[vc];
+		for(int i=0; i<vc; i++)
+		{
+			vertexList[i] = new Vertex();
+			list[i] = new ArrayList<Integer>();
+		}
+		st = new Stack<Integer>();
+	}
+	public void addEdge(int a, int b)
+	{
+		list[a-1].add(b-1);
+		list[b-1].add(a-1);
+	}
+	public int getAdjVertex(int v)
+	{
+		for(int i=0; i<list[v].size(); i++)
+		{
+			if(!vertexList[list[v].get(i)].visited)
+				return list[v].get(i);
+		}
+		return -1;
+	}
+	public int dfs()
+	{
+		int length = 0;
+		int maxlen = 0;
+		int vr = 0;
+		vertexList[0].visited = true;
+		st.push(0);
+		while(!st.isEmpty())
+		{
+			int v = getAdjVertex(st.peek());
+			if(v==-1)
+			{
+				st.pop();
+				length--;
+			}
+			else
+			{
+				vertexList[v].visited = true;
+				st.push(v);
+				length++;
+				if(maxlen<length)
+				{
+					maxlen = length;
+					vr = v;
+				}
+			}
+		}
+		for(int i=0; i<vertexCount; i++)
+			vertexList[i] = new Vertex();
+		return dfs1(vr);
+	}
+	public int dfs1(int vr)
+	{
+		int length = 0;
+		int maxlen = 0;
+		vertexList[vr].visited = true;
+		st.push(vr);
+		while(!st.isEmpty())
+		{
+			int v = getAdjVertex(st.peek());
+			if(v==-1)
+			{
+				st.pop();
+				length--;
+			}
+			else
+			{
+				vertexList[v].visited = true;
+				st.push(v);
+				length++;
+				if(maxlen<length)
+				{
+					maxlen = length;
+				}
+			}
+		}
+		return maxlen;
+	}
+}
+
+class Main
+{
+	public static void main(String[] args) throws IOException 
+	{
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		Graph g = new Graph(n);
+		for(int i=0; i<n-1; i++)
+		{
+			int a = in.nextInt();
+			int b = in.nextInt();
+			g.addEdge(a,b);
+		}
+		System.out.println(g.dfs());
+	}//end of the code
+}
+	
+	    
+	    
+	    
+	    
+	    
+	    
+	 
+	    
+	 
+	                
+	                
+	 

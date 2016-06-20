@@ -1,0 +1,36 @@
+import java.util.*;
+
+ 
+class Main {
+	public static void main(String[] args)
+  {
+	  Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		String s = in.nextLine();
+		for(int p=0; p<t; p++)
+		{
+			s = in.nextLine();
+			StringTokenizer st = new StringTokenizer(s);
+			int len = st.nextToken().length();
+			int count = 1, maxVal = 0;
+			while(st.hasMoreTokens())
+			{
+				int len1 = st.nextToken().length();
+				if(len == len1)
+					count++;
+				else
+				{
+					len = len1;
+					if(count>maxVal)
+						maxVal = count;
+					count = 1;
+				}
+			}
+			if(count>maxVal)
+				maxVal = count;
+			System.out.println(maxVal);
+		}
+    
+    
+  }
+}

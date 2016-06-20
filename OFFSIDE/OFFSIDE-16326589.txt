@@ -1,0 +1,56 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		while(true)
+		{	
+			int a = in.nextInt();
+			int d = in.nextInt();
+			if(a==0 && d==0)
+				break;
+			int b[] = new int[a];
+			int c[] = new int[d];
+			for(int i=0; i<a; i++)
+			{
+				b[i] = in.nextInt();
+			}
+			for(int i=0; i<d; i++)
+			{
+				c[i] = in.nextInt();
+			}
+			for(int i=0; i<a; i++)
+			{
+				for(int j=0; j<a; j++)
+				{
+					if(b[i]<b[j])
+					{
+						int temp = b[i];
+						b[i] = b[j];
+						b[j] = temp;
+					}
+				}
+			}
+			for(int i=0; i<d; i++)
+			{
+				for(int j=0; j<d; j++)
+				{
+					if(c[i]<c[j])
+					{
+						int temp = c[i];
+						c[i] = c[j];
+						c[j] = temp;
+					}
+				}
+			}
+			if(b[0]>=c[1])
+				System.out.println("N");
+			else
+				System.out.println("Y");
+		
+		}
+	}
+}

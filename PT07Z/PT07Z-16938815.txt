@@ -1,0 +1,281 @@
+//import java.io.BufferedInputStream;
+import java.io.InputStream;
+//import java.io.BufferedReader;
+//import java.io.InputStreamReader;
+//import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+//import java.math.BigInteger;
+import java.util.InputMismatchException;
+//import java.util.Arrays;
+//import java.util.List;
+//import java.util.LinkedList;
+//import java.util.Collections;
+//import java.util.Comparator;
+//import java.util.Map;
+//import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
+
+
+class Vertex{
+	public boolean visited;
+	public Vertex()
+	{
+		visited = false;
+	}
+}
+
+class Graph{
+	public int vertexCount;
+	public List<Integer> list[];
+	public Vertex vertexList[];
+	public Stack<Integer> st;
+	public Graph(int vc)
+	{
+		vertexCount = vc;
+		list = new List[vc];
+		vertexList = new Vertex[vc];
+		for(int i=0; i<vc; i++)
+		{
+			vertexList[i] = new Vertex();
+			list[i] = new ArrayList<Integer>();
+		}
+		st = new Stack<Integer>();
+	}
+	public void addEdge(int a, int b)
+	{
+		list[a-1].add(b-1);
+		list[b-1].add(a-1);
+	}
+	public int getAdjVertex(int v)
+	{
+		for(int i=0; i<list[v].size(); i++)
+		{
+			if(!vertexList[list[v].get(i)].visited)
+				return list[v].get(i);
+		}
+		return -1;
+	}
+	public int dfs()
+	{
+		int length = 0;
+		int maxlen = 0;
+		int vr = 0;
+		vertexList[0].visited = true;
+		st.push(0);
+		while(!st.isEmpty())
+		{
+			int v = getAdjVertex(st.peek());
+			if(v==-1)
+			{
+				st.pop();
+				length--;
+			}
+			else
+			{
+				vertexList[v].visited = true;
+				st.push(v);
+				length++;
+				if(maxlen<length)
+				{
+					maxlen = length;
+					vr = v;
+				}
+			}
+		}
+		for(int i=0; i<vertexCount; i++)
+			vertexList[i] = new Vertex();
+		return dfs1(vr);
+	}
+	public int dfs1(int vr)
+	{
+		int length = 0;
+		int maxlen = 0;
+		vertexList[vr].visited = true;
+		st.push(vr);
+		while(!st.isEmpty())
+		{
+			int v = getAdjVertex(st.peek());
+			if(v==-1)
+			{
+				st.pop();
+				length--;
+			}
+			else
+			{
+				vertexList[v].visited = true;
+				st.push(v);
+				length++;
+				if(maxlen<length)
+				{
+					maxlen = length;
+				}
+			}
+		}
+		return maxlen;
+	}
+}
+
+class Main
+{
+	public static void main(String[] args)throws IOException
+	{
+		Scan scan = new Scan();
+		Print print = new Print();
+		int n = scan.scanInt();
+		Graph g = new Graph(n);
+		for(int i=0; i<n-1; i++)
+		{
+			int a = scan.scanInt();
+			int b = scan.scanInt();
+			g.addEdge(a,b);
+		}
+		print.print(Integer.toString(g.dfs()));
+        print.close();
+        //end of the code
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Scan
+{
+	private byte[] buf=new byte[1024];
+	private int index;
+	private InputStream in;
+	private int total;
+	public Scan()
+	{
+		in=System.in;
+	}
+	public int scan()throws IOException
+	{
+		if(total<0)
+		throw new InputMismatchException();
+		if(index>=total)
+		{
+			index=0;
+			total=in.read(buf);
+			if(total<=0)
+			return -1;
+		}
+		return buf[index++];
+	}
+	public int scanInt()throws IOException
+	{
+		int integer=0;
+		int n=scan();
+		while(isWhiteSpace(n))
+		n=scan();
+		int neg=1;
+		if(n=='-')
+		{
+			neg=-1;
+			n=scan();
+		}
+		while(!isWhiteSpace(n))
+		{
+			if(n>='0'&&n<='9')
+			{
+				integer*=10;
+				integer+=n-'0';
+				n=scan();
+			}
+			else throw new InputMismatchException();
+		}
+		return neg*integer;
+	}
+	public double scanDouble()throws IOException
+	{
+		double doub=0;
+		int n=scan();
+		while(isWhiteSpace(n))
+		n=scan();
+		int neg=1;
+		if(n=='-')
+		{
+			neg=-1;
+			n=scan();
+		}
+		while(!isWhiteSpace(n)&&n!='.')
+		{
+			if(n>='0'&&n<='9')
+			{
+				doub*=10;
+				doub+=n-'0';
+				n=scan();
+			}
+			else throw new InputMismatchException();
+		}
+		if(n=='.')
+		{
+			n=scan();
+			double temp=1;
+			while(!isWhiteSpace(n))
+			{
+				if(n>='0'&&n<='9')
+				{
+					temp/=10;
+					doub+=(n-'0')*temp;
+					n=scan();
+				}
+				else throw new InputMismatchException();
+			}
+		}
+		return doub*neg;
+	}
+	public String scanString()throws IOException
+	{
+		StringBuilder sb=new StringBuilder();
+		int n=scan();
+		while(isWhiteSpace(n))
+		n=scan();
+		while(!isWhiteSpace(n))
+		{
+			sb.append((char)n);
+			n=scan();
+		}
+		return sb.toString();
+	}
+	private boolean isWhiteSpace(int n)
+	{
+		if(n==' '||n=='\n'||n=='\r'||n=='\t'||n==-1)
+		return true;
+		return false;
+	}
+}
+ 
+class Print
+{
+	private final BufferedWriter bw;
+	public Print()
+	{
+		bw=new BufferedWriter(new OutputStreamWriter(System.out));
+	}
+	public void print(String str)throws IOException
+	{
+		bw.append(str);
+	}
+	public void printLine(String str)throws IOException
+	{
+		print(str);
+		bw.append("\n");
+	}
+	public void close()throws IOException
+	{
+		bw.close();
+	}
+} 

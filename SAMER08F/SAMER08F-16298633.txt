@@ -1,0 +1,27 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static int getSquare(int n)
+	{
+		if(n==1)
+			return 1;
+		else
+			return (n*n)+getSquare(n-1);
+	}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner val = new Scanner(System.in);
+		while(true)
+		{	
+			int x = val.nextInt();
+			if(x==0)
+				break;
+			else
+			{
+				System.out.println(getSquare(x));
+			}	
+		}
+	}
+}

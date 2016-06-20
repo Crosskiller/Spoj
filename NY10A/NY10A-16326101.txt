@@ -1,0 +1,81 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		for(int i=0; i<t; i++)
+		{
+			int a = in.nextInt();
+			String s = in.next();
+			System.out.print(a+" ");
+			String s1 = "TTT";
+			int sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.print(sum+" ");
+			s1 = "TTH";
+			sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.print(sum+" ");
+			s1 = "THT";
+			sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.print(sum+" ");
+			s1 = "THH";
+			sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.print(sum+" ");
+			s1 = "HTT";
+			sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.print(sum+" ");
+			s1 = "HTH";
+			sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.print(sum+" ");
+			s1 = "HHT";
+			sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.print(sum+" ");
+			s1 = "HHH";
+			sum = 0;
+			for(int j=0; j<38 ;j++)
+			{
+				if(s1.equals(s.substring(j,j+3)))
+					sum++;
+			}
+			System.out.println(sum);
+		}
+	}
+}

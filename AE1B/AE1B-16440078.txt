@@ -1,0 +1,57 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void merging(int a[], int l, int m, int n, int o, int sz)
+	{
+		int t[] = new int[sz];
+		int p = l, q = n, k = l;
+		while(p<=m && q<=o)
+		{
+			if(a[p]<a[q])
+				t[k++]=a[q++];
+			else
+				t[k++] = a[p++];
+		}
+		while(p<=m)
+			t[k++] = a[p++];
+		while(q<=o)
+			t[k++] = a[q++];
+		for(int i=l; i<=o; i++)
+			a[i] = t[i];
+	}
+	public static void sort(int a[], int lb, int ub, int sz)
+	{
+		if(lb<ub)
+		{
+			int mid = (lb+ub)/2;
+			sort(a,lb,mid,sz);
+			sort(a,mid+1,ub,sz);
+			merging(a,lb,mid,mid+1,ub,sz);
+		}
+	}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		int k = in.nextInt();
+		int s = in.nextInt();
+		int a[] = new int[n];
+		for(int i=0; i<n; i++)
+		{
+			a[i] = in.nextInt();
+		}
+		sort(a,0,n-1,n);
+		int sum = 0;
+		int val = k*s;
+		int i = 0;
+		for(i=0; i<n; i++)
+		{
+			sum+=a[i];
+			if(sum>=val)
+				break;
+		}
+		System.out.println(i+1);
+	}
+}

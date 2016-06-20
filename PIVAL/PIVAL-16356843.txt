@@ -1,0 +1,10 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		System.out.print("3.1415926535897932384626433832795");
+	}
+}

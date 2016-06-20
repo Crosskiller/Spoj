@@ -1,0 +1,18 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner val = new Scanner(System.in);
+		while(true)
+		{
+			int a = val.nextInt();
+			if(a==42)
+				break;
+			else
+				System.out.println(a);
+		}
+	}
+}

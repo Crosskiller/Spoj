@@ -1,0 +1,60 @@
+import java.io.*;
+import java.math.BigInteger;
+import java.util.*;
+
+class Main
+{
+	public static int f;
+	public static boolean func(double a[], double mid)
+	{
+		int num = 0;
+		for(int i =0; i < a.length; i++)
+			num += (int)(Math.floor(a[i]/mid));
+		if(num >= f)
+			return true;
+		return false;
+		
+	}
+	public static void main(String[] args) throws IOException 
+	{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		for(int p = 0; p < t; p++)
+		{
+			int n = sc.nextInt();
+			f = sc.nextInt()+1;
+			double[] a = new double[n];
+			for(int i = 0; i < n; i++)
+			{
+				int r = sc.nextInt();
+				a[i] = Math.PI*r*r;
+			}
+			double low = 0;
+			double high = 1e20;
+			for(int i = 0; i < 150;i++)
+			{
+				double mid = (low+high)/2;
+				if(func(a,mid))
+				{
+					low = mid;
+				}else{
+					high = mid;
+				}
+			}
+			System.out.printf("%.4f\n",low);
+		}
+	}//end of the code
+}
+	
+	    
+	    
+	    
+	    
+	    
+	    
+	 
+	    
+	 
+	                
+	                
+	 

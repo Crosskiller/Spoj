@@ -1,0 +1,206 @@
+import java.io.*;
+import java.util.*;
+
+class Graph
+{
+	public int vc;
+	public ArrayList<Integer> arr[];
+	public char gender[];
+	public boolean visited[];
+	public Graph(int n)
+	{
+		vc = n;
+		arr =  new ArrayList[n];
+		for(int i=0; i<n; i++)
+			arr[i] = new ArrayList<Integer>();
+		visited = new boolean[n];
+		gender = new char[n];
+	}
+	public void addEdge(int a, int b)
+	{
+		arr[a-1].add(b-1);
+		arr[b-1].add(a-1);
+	}
+	public int getAdjVertex(int v)
+	{
+		for(int i=0; i<arr[v].size(); i++)
+		{
+			if(!visited[arr[v].get(i)])
+				return arr[v].get(i);
+			else if(gender[arr[v].get(i)]==gender[v])
+				return -2;
+		}
+		return -1;
+	}
+	public int findBug(int s)
+	{
+		ArrayDeque<Integer> st = new ArrayDeque<Integer>();
+		st.push(s);
+		visited[s] = true;
+		gender[s] = 'm';
+		while(!st.isEmpty())
+		{
+			int v = st.peek();
+			int v1 = getAdjVertex(v);
+			if(v1==-1)
+			{
+				st.remove();
+			}
+			else if(v1!=-2)
+			{
+				st.push(v1);
+				visited[v1] = true;
+				if(gender[v]=='m')
+					gender[v1] = 'f';
+				else
+					gender[v1] = 'm';
+			}
+			else if(v1 ==-2)
+			{
+				return -1;
+			}
+		}
+		return -2;
+	}
+}
+class Main
+{
+		static Parser11 in = new Parser11(System.in);
+		static  PrintWriter out = new PrintWriter(System.out);
+		
+		public static void main(String[] args) throws IOException 
+		{
+			int t = in.nextInt();
+			for(int p=0; p<t; p++)
+			{
+				out.println("Scenario #"+(p+1)+":");
+				int n = in.nextInt();
+				int m = in.nextInt();
+				Graph g = new Graph(n);
+				for(int i=0; i<m; i++)
+				{
+					int a = in.nextInt();
+					int b = in.nextInt();
+					g.addEdge(a,b);
+				}
+				boolean flag = true;
+				for(int i=0; i<n; i++)
+				{
+					if(!g.visited[i])
+					{
+						if(g.findBug(i)==-1)
+						{
+							flag = false;
+							break;
+						}
+					}
+				}
+				if(!flag)
+					out.println("Suspicious bugs found!");
+				else
+					out.println("No suspicious bugs found!");
+			}
+			out.flush();
+		//end of the code
+        }
+}
+    
+    
+    
+    
+    
+    
+ 
+    
+ 
+                
+                
+        
+            
+            
+ 
+  
+ 
+  
+  
+ 
+ 
+   
+ 
+     class Parser11{
+        final private int BUFFER_SIZE = 65536;  // 2^16, a good compromise for some problems
+        private InputStream din;    // Underlying input stream
+        private byte[] buffer;      // Self-maintained buffer
+        private int bufferPointer;  // Current read position in the buffer
+        private int bytesRead;      // Effective bytes in the buffer read from the input stream
+ 
+        public Parser11(InputStream in) {
+            din = in;
+            buffer = new byte[BUFFER_SIZE];
+            bufferPointer = bytesRead = 0;
+        }
+ 
+        /**
+         * Read the next integer from the input stream.
+         * @return The next integer.
+         * @throws java.io.IOException
+         */
+        public int nextInt() throws IOException {
+            int result = 0;
+            byte c = read();
+            while (c <= ' ') c = read();
+            boolean neg = (c == '-');
+            if (neg) c = read();
+            while (c >= '0' && c <= '9') {
+                result = result * 10 + c - '0';
+                c = read();
+            }
+            if (neg) return -result;
+            return result;
+        }
+ 
+ 
+        public String readLine() throws IOException {
+            StringBuilder line = new StringBuilder();
+            char c;
+            while ((c = (char)(read())) != '\n') {
+                line.append(c);
+            }
+            return line.toString();
+        }
+ 
+        /**
+         * Read the next byte of data from the input stream.
+         * @return the next byte of data, or -1 if the end of the stream is reached.
+         * @throws IOException if an I/O error occurs.
+         */
+        public byte read() throws IOException {
+            if (bufferPointer == bytesRead)
+                fillBuffer();
+            return buffer[bufferPointer++];
+        }
+ 
+        /**
+         * Read data from the input stream into the buffer
+         * @throws IOException if an I/O error occurs.
+         */
+        private void fillBuffer() throws IOException {
+            bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);
+            if (bytesRead == -1)
+                buffer[0] = -1;
+        }
+        public long nextLong() throws IOException
+    {
+        long ret = 0;
+        byte c = read();
+        while (c <= ' ') c = read();
+        boolean neg = c == '-';
+        if (neg) c = read();
+        do {
+            ret = ret * 10 + c - '0';
+            c = read();
+        } while (c >= '0' && c <= '9');
+        if (neg) return -ret;
+        return ret;
+    }
+    }

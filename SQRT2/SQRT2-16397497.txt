@@ -1,0 +1,44 @@
+import java.util.*;
+import java.lang.*;
+import java.math.*;
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		System.out.print("1.");
+		BigInteger div = new BigInteger("100");
+		BigInteger divider = new BigInteger("24"),val2;
+		int sum = 0;
+		while(sum<200)
+		{
+			BigInteger val = div.divide(divider);
+			System.out.print(val);
+			div = div.mod(divider);
+			divider=divider.add(val);
+			div = new BigInteger(div.toString()+"00");
+			if(div.compareTo(divider)==-1)
+			{
+				div = new BigInteger(div.toString()+"00");
+				System.out.print(0);
+			}
+			BigInteger add1 = new BigInteger("0");
+			val2 = divider;
+			while(true)
+			{
+				add1 = add1.add(BigInteger.valueOf(1));
+				BigInteger val1 = new BigInteger(val2.toString()+add1.toString());
+				if(div.compareTo(val1)==-1)
+				{
+					div = new BigInteger(div.toString()+"00");
+					System.out.print(0);
+				}
+				BigInteger val3 = val1.multiply(add1);
+				if((div.divide(val3)).compareTo(BigInteger.valueOf(0))==0)
+					break;
+				divider = val1;
+			}
+			sum++;
+		}	
+	}
+}

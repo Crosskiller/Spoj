@@ -1,0 +1,24 @@
+import java.util.*;
+import java.lang.*;
+import java.math.*;
+
+class Main
+{
+	public static BigInteger fact(BigInteger n)
+		{
+			if(n.equals(BigInteger.valueOf(1)))
+				return BigInteger.valueOf(1);
+			else 
+				return n.multiply(fact(n.subtract(BigInteger.valueOf(1))));
+		}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner val = new Scanner(System.in);
+			int t = val.nextInt();
+			for(int i=0; i<t; i++)
+			{	
+				BigInteger n = val.nextBigInteger();
+				System.out.println(fact(n));
+			}	
+	}
+}

@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+class Main
+{
+	public static void main(String[] args) throws IOException 
+	{
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		for(int p=0; p<t; p++)
+		{
+			double n = in.nextDouble();
+			double ans = ((n*(n+3.0))/((4.0)*(n+1)*(n+2)))+(1.0/2.0);
+			System.out.printf("%.11f\n",Math.round((ans*100000.0*1000000.0))/(1000000.0*100000.0));
+			
+		}		
+	}//end of the code
+}
+	
+	    
+	    
+	    
+	    
+	    
+	    
+	 
+	    
+	 
+	                
+	                
+	 

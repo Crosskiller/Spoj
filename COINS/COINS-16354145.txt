@@ -1,0 +1,36 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static HashMap<Long,Long> hmap = new HashMap<Long,Long>();
+	public static long coin(long n)
+	{
+		long f=0;
+		if(hmap.containsKey(n))
+		{
+			return hmap.get(n);
+		}
+		if(n==0)
+		{
+			return 0;
+		}
+		f = coin(n/2)+coin(n/3)+coin(n/4);
+		if(f>n)
+			hmap.put(n,f);
+		else
+			hmap.put(n,n);
+		return hmap.get(n);
+	}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+		while(true)
+		{
+			long n = in.nextLong();
+			System.out.println(coin(n));
+			if(!in.hasNextLong())
+				break;
+		}
+	}
+}

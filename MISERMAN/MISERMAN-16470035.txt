@@ -1,0 +1,181 @@
+import java.io.*;
+
+ 
+class Main
+{
+		static Parser11 in = new Parser11(System.in);
+		static  PrintWriter out = new PrintWriter(System.out);
+		
+		
+		//start of the code
+		public static int memo[][];
+		public static int findMin(int a, int b, int c)
+		{
+			if(a<=b && a<=c)
+				return a;
+			else if(b<=a && b<=c)
+				return b;
+			else if(c<=a && c<=b)
+				return c;
+			return -1;
+		}
+		public static int findIt(int arr[][],int i, int j)
+		{
+			int f;
+			if(memo[i][j]!=0)
+				return memo[i][j];
+			else if(i+1==arr.length)
+				return arr[i][j];
+			else if(arr[0].length==1)
+			{
+				f = arr[i][j]+findMin(findIt(arr,i+1,j),100000,100000);
+				memo[i][j] = f;
+			}
+			else if(j==0)
+			{
+				f = arr[i][j]+findMin(findIt(arr,i+1,j),findIt(arr,i+1,j+1),100000);
+				memo[i][j] = f;
+			}
+			else if(j+1==arr[0].length)
+			{
+				f = arr[i][j]+findMin(findIt(arr,i+1,j),findIt(arr,i+1,j-1),100000);
+				memo[i][j] = f;
+			}
+			else
+			{
+				f = arr[i][j]+findMin(findIt(arr,i+1,j),findIt(arr,i+1,j-1),findIt(arr,i+1,j+1));
+				memo[i][j] = f;
+			}
+			return memo[i][j];
+		}
+		
+		public static void main(String[] args) throws IOException 
+		{
+				int row = in.nextInt();
+				int col = in.nextInt();
+				memo = new int[row][col];
+				int a[][] = new int[row][col];
+				for(int i=0; i<row; i++)
+				{
+					for(int j=0; j<col; j++)
+					{
+						a[i][j] = in.nextInt();
+					}
+				}
+				int min = 100000;
+				for(int i=0; i<col; i++)
+				{
+					int val = findIt(a,0,i);
+					if(val<min)
+					{
+						min = val;
+					}
+				}
+				out.println(min);
+				out.flush();
+			
+			
+		
+		//end of the code
+        }
+}
+    
+    
+    
+    
+    
+    
+ 
+    
+ 
+                
+                
+        
+            
+            
+ 
+  
+ 
+  
+  
+ 
+ 
+   
+ 
+     class Parser11{
+        final private int BUFFER_SIZE = 65536;  // 2^16, a good compromise for some problems
+        private InputStream din;    // Underlying input stream
+        private byte[] buffer;      // Self-maintained buffer
+        private int bufferPointer;  // Current read position in the buffer
+        private int bytesRead;      // Effective bytes in the buffer read from the input stream
+ 
+        public Parser11(InputStream in) {
+            din = in;
+            buffer = new byte[BUFFER_SIZE];
+            bufferPointer = bytesRead = 0;
+        }
+ 
+        /**
+         * Read the next integer from the input stream.
+         * @return The next integer.
+         * @throws java.io.IOException
+         */
+        public int nextInt() throws IOException {
+            int result = 0;
+            byte c = read();
+            while (c <= ' ') c = read();
+            boolean neg = (c == '-');
+            if (neg) c = read();
+            while (c >= '0' && c <= '9') {
+                result = result * 10 + c - '0';
+                c = read();
+            }
+            if (neg) return -result;
+            return result;
+        }
+ 
+ 
+        public String readLine() throws IOException {
+            StringBuilder line = new StringBuilder();
+            char c;
+            while ((c = (char)(read())) != '\n') {
+                line.append(c);
+            }
+            return line.toString();
+        }
+ 
+        /**
+         * Read the next byte of data from the input stream.
+         * @return the next byte of data, or -1 if the end of the stream is reached.
+         * @throws IOException if an I/O error occurs.
+         */
+        public byte read() throws IOException {
+            if (bufferPointer == bytesRead)
+                fillBuffer();
+            return buffer[bufferPointer++];
+        }
+ 
+        /**
+         * Read data from the input stream into the buffer
+         * @throws IOException if an I/O error occurs.
+         */
+        private void fillBuffer() throws IOException {
+            bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);
+            if (bytesRead == -1)
+                buffer[0] = -1;
+        }
+        public long nextLong() throws IOException
+    {
+        long ret = 0;
+        byte c = read();
+        while (c <= ' ') c = read();
+        boolean neg = c == '-';
+        if (neg) c = read();
+        do {
+            ret = ret * 10 + c - '0';
+            c = read();
+        } while (c >= '0' && c <= '9');
+        if (neg) return -ret;
+        return ret;
+    }
+    }

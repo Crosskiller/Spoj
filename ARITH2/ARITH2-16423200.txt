@@ -1,0 +1,61 @@
+import java.util.*;
+import java.lang.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner in = new Scanner(System.in);
+    	int t = in.nextInt();
+    	while(t>0)
+    	{
+    		String s = in.nextLine();
+    		if(s.equals(""))
+    		{
+    			continue;
+    		}
+    		StringTokenizer st = new StringTokenizer(s);
+    		String s1 = st.nextToken();
+    		while(st.hasMoreTokens())
+    		{
+    			String s2 = st.nextToken();
+    			if(s2.equals("+"))
+    			{
+    				String s3 = st.nextToken();
+    				long sum = Long.parseLong(s1)+Long.parseLong(s3);
+    				s1 = Long.toString(sum);
+    			}
+    			else if(s2.equals("*"))
+    			{
+    				String s3 = st.nextToken();
+    				long sum = Long.parseLong(s1)*Long.parseLong(s3);
+    				s1 = Long.toString(sum);
+    			}
+    			else if(s2.equals("-"))
+    			{
+    				String s3 = st.nextToken();
+    				long sum = Long.parseLong(s1)-Long.parseLong(s3);
+    				s1 = Long.toString(sum);
+    			}
+    			else if(s2.equals("/"))
+    			{
+    				String s3 = st.nextToken();
+    				long sum = Long.parseLong(s1)/Long.parseLong(s3);
+    				s1 = Long.toString(sum);
+    			}
+    			else if(s2.equals("%"))
+    			{
+    				String s3 = st.nextToken();
+    				long sum = Long.parseLong(s1)%Long.parseLong(s3);
+    				s1 = Long.toString(sum);
+    			}
+    			else if(s2.equals("="))
+    			{
+    				break;
+    			}
+    		}
+    		System.out.println(s1);
+    		t--;
+    	}
+	}
+}

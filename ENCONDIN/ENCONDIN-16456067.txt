@@ -1,0 +1,62 @@
+import java.util.*;
+class Main
+{
+	public static void main (String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+    	while(true)
+		{
+    		String s = in.nextLine();
+    		if(s.equals(""))
+    			continue;
+    		boolean flag = false;
+    		int i = 0;
+    		while(i<s.length())
+    		{
+    			char ch = s.charAt(i);
+    			int count = 1;
+    			i++;
+    			while(i<s.length()&& count<9 )
+    			{
+    				if(ch==s.charAt(i))
+    				{
+    					count++;
+    					i++;
+    				}
+    				else
+    					break;
+    			}
+    			if(count>1 && flag == true)
+    			{
+    				System.out.print(1);
+    				flag = false;
+    			}
+    			if(count==1)
+    			{
+    				if(flag == false)
+    					System.out.print(1);
+    				flag = true;
+    				if(ch=='1')
+    				{
+    					System.out.print(1);
+    					System.out.print(ch);
+        			}
+    				else
+    					System.out.print(ch);
+    				if(i==s.length())
+    					System.out.print(1);
+    			}
+    			else
+    			{
+    				System.out.print(count);
+    				System.out.print(ch);
+    				
+    			}
+    		}
+    		
+    		System.out.println("");
+    		if(!in.hasNext())
+    			break;
+    	}
+	}
+}

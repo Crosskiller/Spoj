@@ -1,0 +1,44 @@
+import java.util.*;
+
+
+class Main
+{
+	public static void main (String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		for(int p=0; p<t; p++)
+		{
+			String s = in.next();
+			char a[] = s.toCharArray();
+			s = in.next();
+			char b[] = s.toCharArray();
+			int n = a.length;
+			int m = b.length;
+			int dp[][] = new int[n+1][m+1];
+			for(int i=0; i<=n; i++)
+				dp[i][0] = i;
+			for(int i=0; i<=m; i++)
+				dp[0][i] = i;
+			for(int i=1; i<=n; i++)
+			{
+				for(int j=1; j<=m; j++)
+				{
+					int d1 = ((a[i-1]==b[j-1])?0:1)+dp[i-1][j-1];
+					int d2 = dp[i][j-1]+1;
+					int d3 = dp[i-1][j]+1;
+					if(d1<d2&&d1<d3)
+						dp[i][j]=d1;
+			        else{
+			        	if(d2<d3)
+			        		dp[i][j]=d2;
+			         	else
+			         	    dp[i][j]=d3;
+			        	}
+				}
+			}
+		System.out.println(dp[n][m]);
+		
+		}
+	}
+}
